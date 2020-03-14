@@ -1,3 +1,5 @@
+import os
+
 import telebot
 import bs4
 from Task import Task
@@ -5,8 +7,8 @@ import parser
 import markups as m
 
 #main variables
-TOKEN = '509706011:AAF7aaaaaaaaaaaaaaaaaaaAAAaaAAaAaAAAaa'
-bot = telebot.TeleBot(TOKEN)
+token = os.environ['TELEGRAM_TOKEN']
+bot = telebot.TeleBot(token)
 task = Task()
 
 #handlers
