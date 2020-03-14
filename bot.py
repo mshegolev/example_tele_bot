@@ -1,9 +1,10 @@
 import os
+import time
 
 import telebot
 
 token = os.environ['TELEGRAM_TOKEN']
-bot = telebot.TeleBot(token)
+bot = telebot.TeleBot(token=token, num_threads=1)
 
 
 @bot.message_handler(content_types=["text"])
@@ -14,7 +15,7 @@ def repeat_all_messages(message):  # Название функции не игр
 if __name__ == '__main__':
     while True:
         try:
-            bot.polling(none_stop=True)
+            bot.polling(none_stop=True, interval=5, timeout=20)
         except Exception as e:
-            logger.error(e)
-            time.sleep(15)
+            telebot.logger.error(e)
+            time.sleep(60)
